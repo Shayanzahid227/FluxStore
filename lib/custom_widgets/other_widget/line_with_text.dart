@@ -9,7 +9,7 @@ class CustomLineWithText extends StatelessWidget {
   const CustomLineWithText({
     super.key,
     required this.text,
-    this.lineWidth = 50.0, // Default line width
+    this.lineWidth = 0.0, // Default line width
   });
 
   @override
@@ -31,8 +31,8 @@ class CustomLineWithText extends StatelessWidget {
             child: Text(
               text,
               style: GoogleFonts.poppins(
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w400,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ),

@@ -1,62 +1,87 @@
-import 'package:code_structure/core/constants/strings.dart';
-import 'package:code_structure/ui/auth/login/login_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:code_structure/core/constants/app_asset.dart';
+import 'package:code_structure/core/constants/colors.dart';
 
-class SplashScreen_0 extends StatefulWidget {
-  const SplashScreen_0({super.key});
+import 'package:code_structure/core/constants/text_style.dart';
+import 'package:code_structure/custom_widgets/studio_flex/expendedbutton.dart';
+import 'package:code_structure/ui/screens/1_intro_screen/intro_1.dart';
+import 'package:code_structure/ui/screens/sliding_intro_screen/intro_sliding_screen.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen_0> createState() => _SplashScreen_0State();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreen_0State extends State<SplashScreen_0> {
-  init() async {
-    await Future.delayed(const Duration(seconds: 2), () {
-      // navigator and rout mean from one page to another
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => LoginScreen(),
-      ));
-    });
-  }
+class _SplashScreenState extends State<SplashScreen> {
+  // init() async {
+  //   await Future.delayed(const Duration(seconds: 2), () {
+  //     // navigator and rout mean from one page to another
+  //     Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (context) => IntroScreens_123(),
+  //     ));
+  //   });
+  // }
 
-  @override
-  void initState() {
-    init();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   init();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-                padding: const EdgeInsets.only(top: 300),
-                child: SizedBox(
-                  height: 170,
-                  width: 140,
-                  child: Image.asset(
-                    "$staticAssets/image_name_here",
-                    fit: BoxFit.cover,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(children: [
+            Container(
+              height: 100,
+              width: 200,
+              color: blackColor,
+            ),
+            Image.asset(
+              AppAssets().splash,
+              fit: BoxFit.cover,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.56,
                   ),
-                )),
-            const SizedBox(height: 20),
-            const Text("Lucious",
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black)),
-            const Text("B e a u t y  s a l o o n",
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.black))
-          ],
-        ),
+                  Text("Welcome to Gemstore!",
+                      style: style25B.copyWith(color: whiteColor)),
+                  Text("the home for fashionate",
+                      style:
+                          style16N.copyWith(color: whiteColor, fontSize: 20)),
+                  80.verticalSpace,
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Intro1()));
+                      },
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => IntroScreens_123()));
+                          },
+                          child: CustomExpendButton(text: "Get Started")))
+                ],
+              ),
+            )
+          ]),
+        ],
       ),
     ));
   }

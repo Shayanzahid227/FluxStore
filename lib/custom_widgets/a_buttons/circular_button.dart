@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CircularButton extends StatelessWidget {
+class CustomCircularButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData icon;
   final Color backgroundColor;
   final double radius;
 
-  const CircularButton({
+  const CustomCircularButton({
     super.key,
     required this.onPressed,
     required this.icon,
