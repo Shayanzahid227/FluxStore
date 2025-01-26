@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Stack(children: [
             Container(
               height: 100,
-              width: 200,
+              width: 201,
               color: blackColor,
             ),
             Image.asset(
