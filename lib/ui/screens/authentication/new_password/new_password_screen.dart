@@ -30,10 +30,8 @@ class _CreatNewPasswordScreenState extends State<CreatNewPasswordScreen> {
 
   // TextEditingController emailController = TextEditingController();
   // TextEditingController passwordController = TextEditingController();
-  //final _fromKey = GlobalKey<FormState>();
-  // final RegExp _emailRegex = RegExp(
-  //   r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-  // );
+  final _fromKey = GlobalKey<FormState>();
+
   bool _IsSelected = true;
   @override
   void initState() {
@@ -47,6 +45,26 @@ class _CreatNewPasswordScreenState extends State<CreatNewPasswordScreen> {
     });
   }
 
+  ///
+  /// for password
+  ///
+  String? _validatePassword(String? value) {
+    if (value == null || value.trim().isEmpty || value.trim().length < 6) {
+      return 'Enter a valid password';
+    }
+    return null;
+  }
+
+  ///
+  ///for confirm password
+  ///
+  String? _validateConfirmPassword(String? value) {
+    if (value == _validatePassword(value)) {
+      return 'Enter a valid password';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,55 +75,60 @@ class _CreatNewPasswordScreenState extends State<CreatNewPasswordScreen> {
             right: 32,
             top: 93,
           ),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Create new password  ",
-                  style: GoogleFonts.sansita(fontSize: 25),
+          child: Form(
+            key: _fromKey,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Create new password  ",
+                    style: GoogleFonts.sansita(fontSize: 25),
+                  ),
                 ),
-              ),
-              20.verticalSpace,
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  " Your new password must be different \nfrom previously used password",
-                  style: GoogleFonts.sansita(
-                      fontSize: 15, fontWeight: FontWeight.w300),
+                20.verticalSpace,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    " Your new password must be different \nfrom previously used password",
+                    style: GoogleFonts.sansita(
+                        fontSize: 15, fontWeight: FontWeight.w300),
+                  ),
                 ),
-              ),
-              70.verticalSpace,
-              customtextformfeild(
-                text: "New password",
-                suffixIcon: GestureDetector(
-                    onTap: () {
-                      OnClick();
-                    },
-                    child: Icon(_IsSelected
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility)),
-                obscureText: _IsSelected,
-              ),
-              20.verticalSpace,
-              customtextformfeild(
-                text: "Confirm Password",
-                suffixIcon: GestureDetector(
-                    onTap: () {
-                      OnClick();
-                    },
-                    child: Icon(_IsSelected
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility)),
-                obscureText: _IsSelected,
-              ),
-              70.h.verticalSpace,
-              CustomConfirmButton(
-                  text: "Confirm",
-                  onPressed: () {
-                    _showBottomSheet();
-                  })
-            ],
+                70.verticalSpace,
+                customtextformfeild(
+                  text: "New password",
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                        OnClick();
+                      },
+                      child: Icon(_IsSelected
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility)),
+                  obscureText: _IsSelected,
+                  validator: _validatePassword,
+                ),
+                20.verticalSpace,
+                customtextformfeild(
+                  text: "Confirm Password",
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                        OnClick();
+                      },
+                      child: Icon(_IsSelected
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility)),
+                  obscureText: _IsSelected,
+                  validator: _validateConfirmPassword,
+                ),
+                70.h.verticalSpace,
+                CustomConfirmButton(
+                    text: "Confirm",
+                    onPressed: () {
+                      _showBottomSheet();
+                    })
+              ],
+            ),
           ),
         ),
       ),

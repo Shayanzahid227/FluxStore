@@ -1,7 +1,7 @@
 import 'package:code_structure/core/constants/colors.dart';
 import 'package:code_structure/custom_widgets/a_buttons/circular_button.dart';
 import 'package:code_structure/custom_widgets/studio_flex/confirm_button.dart';
-import 'package:code_structure/ui/screens/2_authentiction/5_new_password/new_password_screen.dart';
+import 'package:code_structure/ui/screens/authentication/new_password/new_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

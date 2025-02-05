@@ -5,7 +5,7 @@ import 'package:code_structure/custom_widgets/a_buttons/circular_button.dart';
 import 'package:code_structure/custom_widgets/studio_flex/confirm_button.dart';
 import 'package:code_structure/custom_widgets/studio_flex/login_button.dart';
 import 'package:code_structure/custom_widgets/studio_flex/text_feild.dart';
-import 'package:code_structure/ui/screens/2_authentiction/4_pin_code/pin_code_screen.dart';
+import 'package:code_structure/ui/screens/authentication/pin_code/pin_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +18,20 @@ class ForgetScreen extends StatefulWidget {
 }
 
 class _ForgetScreenState extends State<ForgetScreen> {
+  final RegExp _emailRegex = RegExp(
+    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+  );
+
+  ///
+  /// for emial
+  ///
+  String? _validateEmail(String? value) {
+    if (value == null || value.trim().isEmpty || !_emailRegex.hasMatch(value)) {
+      return 'Enter a valid email';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +74,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                 //color: blackColor,
               ),
               obscureText: false,
+              validator: _validateEmail,
             ),
             100.verticalSpace,
             Center(

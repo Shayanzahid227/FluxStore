@@ -17,20 +17,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // init() async {
-  //   await Future.delayed(const Duration(seconds: 2), () {
-  //     // navigator and rout mean from one page to another
-  //     Navigator.of(context).push(MaterialPageRoute(
-  //       builder: (context) => IntroScreens_123(),
-  //     ));
-  //   });
-  // }
+  init() async {
+    await Future.delayed(const Duration(seconds: 2), () {
+      // navigator and rout mean from one page to another
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => IntroScreens_123(),
+      ));
+    });
+  }
 
-  // @override
-  // void initState() {
-  //   init();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,42 +44,41 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Stack(children: [
             Container(
-              height: 100,
-              width: 201,
-              color: blackColor,
-            ),
-            Image.asset(
-              AppAssets().splash,
-              fit: BoxFit.cover,
-            ),
-            Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: screenHeight * 0.56,
-                  ),
-                  Text("Welcome to Gemstore!",
-                      style: style25B.copyWith(color: whiteColor)),
-                  Text("the home for fashionate",
-                      style:
-                          style16N.copyWith(color: whiteColor, fontSize: 20)),
-                  80.verticalSpace,
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Intro1()));
-                      },
-                      child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => IntroScreens_123()));
-                          },
-                          child: CustomExpendButton(text: "Get Started")))
-                ],
+              height: screenHeight * 1,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(AppAssets().splash), fit: BoxFit.cover
+                      // AppAssets().splash,
+                      )),
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: screenHeight * 0.56,
+                    ),
+                    Text("Welcome to Gemstore!",
+                        style: style25B.copyWith(color: whiteColor)),
+                    Text("the home for fascinate",
+                        style:
+                            style16N.copyWith(color: whiteColor, fontSize: 20)),
+                    80.verticalSpace,
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => IntroScreens_123()));
+                        },
+                        child: CustomExpendButton(text: "Get Started"))
+                  ],
+                ),
               ),
-            )
+            ),
+            Container(
+              height: 100,
+              width: 200,
+            ),
           ]),
         ],
       ),

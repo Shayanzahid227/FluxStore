@@ -1,7 +1,7 @@
 import 'package:code_structure/core/constants/app_asset.dart';
 import 'package:code_structure/core/constants/colors.dart';
 import 'package:code_structure/custom_widgets/studio_flex/expendedbutton.dart';
-import 'package:code_structure/ui/screens/2_authentiction/1_login/login_screen.dart';
+import 'package:code_structure/ui/screens/authentication/log/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +17,7 @@ class _Intro1State extends State<Intro1> {
   @override
   Widget build(BuildContext context) {
     double screenheight = MediaQuery.of(context).size.height;
-    double screenwidth = MediaQuery.of(context).size.width;
+    // double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -50,6 +50,10 @@ class _Intro1State extends State<Intro1> {
                 ),
               ),
             ),
+
+            ///
+            ///        image
+            ///
             Padding(
               padding: const EdgeInsets.only(bottom: 100.0),
               child: Center(
@@ -66,6 +70,9 @@ class _Intro1State extends State<Intro1> {
                 ),
               ),
             ),
+
+            ///
+            ///     three dots for showing number of pic
             Padding(
               padding: const EdgeInsets.only(top: 530),
               child: Center(
@@ -74,6 +81,11 @@ class _Intro1State extends State<Intro1> {
                       width: 200,
                       child: Image(image: AssetImage(AppAssets().slider1)))),
             ),
+
+            ///
+            ///       button
+            ///
+
             GestureDetector(
               onTap: () {
                 print("working");

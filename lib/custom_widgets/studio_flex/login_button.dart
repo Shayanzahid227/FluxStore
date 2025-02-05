@@ -5,9 +5,14 @@ import 'package:code_structure/core/constants/colors.dart';
 class CustomloginButton extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
+  final value;
+  final bool loading;
 
   const CustomloginButton(
-      {super.key, required this.text, required this.onPressed});
+      {required this.text,
+      required this.onPressed,
+      this.value,
+      this.loading = false});
 
   @override
   State<CustomloginButton> createState() => _CustomloginButtonState();
@@ -42,60 +47,62 @@ class _CustomloginButtonState extends State<CustomloginButton> {
 
     return GestureDetector(
       onTap: () {
-        onClick();
-      }, // Call the onTap function passed during widget creation
-      child: GestureDetector(
-        onTap: () {
-          toggleSelection(); // Change button state
-          widget.onPressed(); // Trigger the onPressed callback
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment:
-                MainAxisAlignment.center, // Center content vertically
-            children: [
-              Container(
-                height: screenHeight * 0.07,
-                width: screenWidth * 0.45,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: whiteColor),
-
-                  ///
-                  ///
-                  ///   when button color is changing then navigation does't perform
-                  ///
-                  ///
-                  ///
+        toggleSelection(); // Change button state
+        widget.onPressed(); // Trigger the onPressed callback
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          ),
+          //  border: Border.all(color: PrimaryLoginButtonColor),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Center content vertically
+          children: [
+            Container(
+              height: screenHeight * 0.07,
+              width: screenWidth * 0.45,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 2,
                   color: PrimaryLoginButtonColor,
-                  // color: isSelected ? Color(0xfff2d201c) : SecondarybuttonColor,
-                  ///
-                  ///
-                  ///
-                  borderRadius: BorderRadius.circular(40),
                 ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //  icon,
-                      // SizedBox(width: 8),
-                      Text(
+
+                ///
+                ///
+                ///   when button color is changing then navigation does't perform
+                ///
+                ///
+                ///
+                //color: PrimaryLoginButtonColor,
+                color: isSelected ? Color(0xfff2d201c) : SecondarybuttonColor,
+
+                ///
+                ///
+                ///
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Center(
+                child: widget.loading
+                    ? CircularProgressIndicator(
+                        strokeWidth: 4,
+                        color: whiteColor,
+                      )
+                    : Text(
                         widget.text,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
                           color: isSelected ? Colors.white : Colors.black,
+                          //color: whiteColor
                         ),
                       ),
-                    ],
-                  ),
-                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
