@@ -88,7 +88,7 @@ class _CustomloginButtonState extends State<CustomloginButton> {
               child: Center(
                 child: widget.loading
                     ? CircularProgressIndicator(
-                        strokeWidth: 4,
+                        strokeWidth: 3,
                         color: whiteColor,
                       )
                     : Text(
