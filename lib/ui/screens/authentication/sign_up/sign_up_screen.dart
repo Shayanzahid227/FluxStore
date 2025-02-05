@@ -187,7 +187,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   //   _confirmPasswordController.text = value;
                   // },
                 ),
-                40.verticalSpace,
+                41.verticalSpace,
                 CustomloginButton(
                   loading: loading,
                   text: "SIGN UP",

@@ -53,7 +53,7 @@ class _CustomloginButtonState extends State<CustomloginButton> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(20),
+            Radius.circular(21),
           ),
           //  border: Border.all(color: PrimaryLoginButtonColor),
         ),
