@@ -77,8 +77,8 @@ class _CustomloginButtonState extends State<CustomloginButton> {
                 ///
                 ///
                 ///
-                //color: PrimaryLoginButtonColor,
-                color: isSelected ? Color(0xfff2d201c) : SecondarybuttonColor,
+                color: PrimaryLoginButtonColor,
+                // color: isSelected ? Color(0xfff2d201c) : SecondarybuttonColor,
 
                 ///
                 ///
@@ -94,11 +94,10 @@ class _CustomloginButtonState extends State<CustomloginButton> {
                     : Text(
                         widget.text,
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 17,
-                          color: isSelected ? Colors.white : Colors.black,
-                          //color: whiteColor
-                        ),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                            // color: isSelected ? Colors.white : Colors.black,
+                            color: whiteColor),
                       ),
               ),
             ),

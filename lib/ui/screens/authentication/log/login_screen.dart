@@ -6,6 +6,7 @@ import 'package:code_structure/custom_widgets/studio_flex/social_button.dart';
 import 'package:code_structure/custom_widgets/studio_flex/text_feild.dart';
 import 'package:code_structure/ui/screens/authentication/sign_up/sign_up_screen.dart';
 import 'package:code_structure/ui/screens/authentication/forget/forget_screen.dart';
+import 'package:code_structure/ui/screens/authentication/utils/sign_in_error_message.dart';
 import 'package:code_structure/ui/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +23,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  bool loading = false;
+
   ///
   ///  user registration in firebase
   ///
@@ -30,12 +33,41 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Future<void> register() async {
+  Future<void> _login() async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      setState(() {
+        loading = true;
+      });
+      await _auth
+          .signInWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text)
+          .then((value) {
+        setState(() {
+          loading = false;
+        });
+        Utils().ToastMessage(
+          value.user!.email.toString(),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      }).onError(
+        (error, stackTrace) {
+          setState(() {
+            loading = false;
+          });
+          // normal print statement slow app use debugprint
+          debugPrint(error.toString());
+          Utils().ToastMessage(
+            error.toString(),
+          );
+        },
+      );
     } catch (e) {
-      print("SignIn failed $e");
+      print("User can not found $e");
     }
   }
 
@@ -97,9 +129,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 ///     text field for email
                 ///
                 customtextformfeild(
-                  onChanged: (value) {
-                    emailController.text = value;
-                  },
+                  // onChanged: (value) {
+                  //   emailController.text = value;
+                  // },
                   controller: emailController,
                   text: "Email address",
                   obscureText: false,
@@ -111,9 +143,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 ///     text field for password
                 ///
                 customtextformfeild(
-                  onChanged: (value) {
-                    passwordController.text = value;
-                  },
+                  // onChanged: (value) {
+                  //   passwordController.text = value;
+                  // },
                   controller: passwordController,
                   text: "Password", obscureText: false,
                   validator: _validatePassword,
@@ -134,20 +166,20 @@ class _LogInScreenState extends State<LogInScreen> {
                 GestureDetector(
                   onTap: () {},
                   child: CustomloginButton(
+                    loading: loading,
                     text: "LOG IN",
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
-                          ),
-                        );
-
                         ///
-                        /// function to register user already declared on the top
+                        /// function to login user if he/she is already signUp declared on the top
                         ///
-                        register();
+                        _login();
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => HomeScreen(),
+                        //   ),
+                        // );
                       }
                     },
                   ),
