@@ -76,23 +76,30 @@ class _Intro1State extends State<Intro1> {
             Padding(
               padding: const EdgeInsets.only(top: 530),
               child: Center(
-                  child: Container(
-                      height: 10,
-                      width: 200,
-                      child: Image(image: AssetImage(AppAssets().slider1)))),
+                child: Container(
+                  height: 10,
+                  width: 200,
+                  child: Image(
+                    image: AssetImage(AppAssets().slider1),
+                  ),
+                ),
+              ),
             ),
 
             ///
             ///       button
             ///
 
-            GestureDetector(
-              onTap: () {
-                print("working");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LogInScreen()));
-              },
-              child: Center(child: CustomExpendButton(text: "shopping now")),
+            Padding(
+              padding: EdgeInsets.only(top: 630.h),
+              child: GestureDetector(
+                onTap: () {
+                  print("working");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LogInScreen()));
+                },
+                child: Center(child: CustomExpendButton(text: "shopping now")),
+              ),
             )
           ],
         ),

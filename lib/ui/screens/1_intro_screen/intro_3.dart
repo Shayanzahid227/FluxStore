@@ -69,22 +69,31 @@ class _Intro3State extends State<Intro3> {
             Padding(
               padding: const EdgeInsets.only(top: 530),
               child: Center(
-                  child: Container(
-                      height: 10,
-                      width: 200,
-                      child: Image(image: AssetImage(AppAssets().slider3)))),
+                child: Container(
+                  height: 10,
+                  width: 200,
+                  child: Image(
+                    image: AssetImage(AppAssets().slider3),
+                  ),
+                ),
+              ),
             ),
             Padding(
-                padding: EdgeInsets.only(top: 620.h),
-                child: Center(
-                    child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LogInScreen()));
-                        },
-                        child: CustomExpendButton(text: "shopping now"))))
+              padding: EdgeInsets.only(top: 620.h),
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LogInScreen(),
+                      ),
+                    );
+                  },
+                  child: CustomExpendButton(text: "shopping now"),
+                ),
+              ),
+            )
           ],
         ),
       ),
