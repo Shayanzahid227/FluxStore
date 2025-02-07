@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 
 class SignInViewModel extends ChangeNotifier {
   bool loading = false;
+  final formKey = GlobalKey<FormState>();
 
   ///
   /// this step will give us API exposure of registration
   ///
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> signIn() async {
     try {
-      await _auth
+      await auth
           .createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
+        email: emailController.text,
+        password: passwordController.text,
       )
           .then((value) {
         // setState(() {
@@ -38,18 +39,18 @@ class SignInViewModel extends ChangeNotifier {
     }
   }
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
-  final _fromKey = GlobalKey<FormState>();
-  final RegExp _emailRegex = RegExp(
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  final RegExp emailRegex = RegExp(
     r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
   );
 
   ///
   ///  for name
   ///
-  String? _validateName(String? value) {
+  String? validateName(String? value) {
     if (value!.trim().isEmpty) {
       return 'Enter your name ';
     }
@@ -59,10 +60,10 @@ class SignInViewModel extends ChangeNotifier {
   ///
   /// for emial
   ///
-  String? _validateEmail(String? value) {
+  String? validateEmail(String? value) {
     if (value!.trim().isEmpty) {
       return 'Enter your email';
-    } else if (!_emailRegex.hasMatch(value)) {
+    } else if (!emailRegex.hasMatch(value)) {
       return "enter valid email e.g abc@gmail.com";
     }
     return null;
@@ -71,7 +72,7 @@ class SignInViewModel extends ChangeNotifier {
   ///
   /// for password
   ///
-  String? _validatePassword(String? value) {
+  String? validatePassword(String? value) {
     if (value == null || value.trim().isEmpty || value.trim().length < 6) {
       return 'Enter a valid password';
     }
@@ -81,8 +82,8 @@ class SignInViewModel extends ChangeNotifier {
   ///
   ///for confirm password
   ///
-  String? _validateConfirmPassword(value) {
-    if (_passwordController.text != _confirmPasswordController.text) {
+  String? validateConfirmPassword(value) {
+    if (passwordController.text != confirmPasswordController.text) {
       return 'Confirm password is incorrect ';
     }
     return null;

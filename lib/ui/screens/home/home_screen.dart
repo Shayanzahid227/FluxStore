@@ -1,5 +1,5 @@
 import 'package:code_structure/core/constants/colors.dart';
-import 'package:code_structure/ui/screens/authentication/log/login_screen.dart';
+import 'package:code_structure/ui/screens/authentication/log/login_with_emial/login_screen.dart';
 import 'package:code_structure/ui/screens/authentication/utils/sign_in_error_message.dart';
 import 'package:code_structure/ui/screens/home/home_screen_viev_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _auth = FirebaseAuth.instance;
-
   int counter = 0;
   int _counter() {
     return counter = counter + 1;
@@ -33,22 +31,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   actions: [
                     IconButton(
                         onPressed: () {
-                          _auth.signOut().then(
-                            (value) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LogInScreen(),
-                                ),
-                              );
-                            },
-                          ).onError(
-                            (error, stackTrace) {
-                              Utils().ToastMessage(
-                                error.toString(),
-                              );
-                            },
-                          );
+                          model.signOut();
+                          // _auth.signOut().then(
+                          //   (value) {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) => LogInScreen(),
+                          //       ),
+                          //     );
+                          //   },
+                          // ).onError(
+                          //   (error, stackTrace) {
+                          //     Utils().ToastMessage(
+                          //       error.toString(),
+                          //     );
+                          //   },
+                          // );
                         },
                         icon: Icon(Icons.logout)),
                     30.horizontalSpace

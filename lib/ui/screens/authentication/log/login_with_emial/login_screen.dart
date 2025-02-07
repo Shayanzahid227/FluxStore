@@ -9,8 +9,6 @@ import 'package:code_structure/ui/screens/authentication/forget/forget_screen.da
 import 'package:code_structure/ui/screens/authentication/utils/sign_in_error_message.dart';
 import 'package:code_structure/ui/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
