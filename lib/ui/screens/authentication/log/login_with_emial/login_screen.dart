@@ -65,6 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
         },
       );
     } catch (e) {
+      // for de bugging this will be display in console
       print("User can not found $e");
     }
   }
@@ -98,8 +99,8 @@ class _LogInScreenState extends State<LogInScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-            left: 32,
-            right: 32,
+            left: 33,
+            right: 33,
             top: 93,
           ),
           child: Form(

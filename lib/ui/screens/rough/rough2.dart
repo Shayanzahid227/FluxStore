@@ -1,4 +1,6 @@
+import 'package:code_structure/core/others/base_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -40,90 +42,96 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return _buildPage(_pages[index]);
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Back button
-                  TextButton(
-                    onPressed: _currentPage == 0
-                        ? null
-                        : () {
-                            _pageController.previousPage(
+    return ChangeNotifierProvider(
+      create: (context) => BaseViewModel(),
+      child: Consumer<BaseViewModel>(
+        builder: (context, value, child) => Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: _pages.length,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentPage = index;
+                      });
+                    },
+                    itemBuilder: (context, index) {
+                      return _buildPage(_pages[index]);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Back button
+                      TextButton(
+                        onPressed: _currentPage == 0
+                            ? null
+                            : () {
+                                _pageController.previousPage(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                );
+                              },
+                        child: Text(
+                          'Back',
+                          style: TextStyle(
+                            color:
+                                _currentPage == 0 ? Colors.grey : Colors.black,
+                          ),
+                        ),
+                      ),
+                      // Page indicators
+                      Row(
+                        children: List.generate(
+                          _pages.length,
+                          (index) => Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: _currentPage == index
+                                  ? Colors.blue
+                                  : Colors.grey.shade300,
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Next/Skip button
+                      TextButton(
+                        onPressed: () {
+                          if (_currentPage == _pages.length - 1) {
+                            // Navigate to main app
+                            // Navigator.pushReplacement(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => MainApp()),
+                            // );
+                          } else {
+                            _pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
-                          },
-                    child: Text(
-                      'Back',
-                      style: TextStyle(
-                        color: _currentPage == 0 ? Colors.grey : Colors.black,
-                      ),
-                    ),
-                  ),
-                  // Page indicators
-                  Row(
-                    children: List.generate(
-                      _pages.length,
-                      (index) => Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentPage == index
-                              ? Colors.blue
-                              : Colors.grey.shade300,
+                          }
+                        },
+                        child: Text(
+                          _currentPage == _pages.length - 1
+                              ? 'Get Started'
+                              : 'Next',
+                          style: const TextStyle(color: Colors.blue),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  // Next/Skip button
-                  TextButton(
-                    onPressed: () {
-                      if (_currentPage == _pages.length - 1) {
-                        // Navigate to main app
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => MainApp()),
-                        // );
-                      } else {
-                        _pageController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                      }
-                    },
-                    child: Text(
-                      _currentPage == _pages.length - 1
-                          ? 'Get Started'
-                          : 'Next',
-                      style: const TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
