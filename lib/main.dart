@@ -1,4 +1,5 @@
 import 'package:code_structure/firebase_options.dart';
+import 'package:code_structure/ui/screens/authentication/sign_up/sign_up_screen.dart';
 import 'package:code_structure/ui/screens/rough/rough2.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
- 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(scaffoldBackgroundColor: const Color(0xffFAF8F6)),
-         home: OnboardingScreen(),
+        home: SignInScreen(),
       ),
     );
   }

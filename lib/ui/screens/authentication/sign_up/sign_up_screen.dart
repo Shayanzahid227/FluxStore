@@ -23,7 +23,182 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  //  final _fromKey = GlobalKey<FormState>();
+  String? name;
+  String? email;
+  var pasword;
+  var confirmPassword;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (context) => SignInViewModel(),
+        child: Consumer<SignInViewModel>(
+          builder: (context, model, child) => Scaffold(
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 32,
+                  right: 32,
+                  top: 93,
+                ),
+                child: Form(
+                  // key: _fromKey,
+                  key: model.formKey,
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Creat ",
+                          style: GoogleFonts.sansita(fontSize: 25),
+                        ),
+                      ),
+                      20.verticalSpace,
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Your account",
+                          style: GoogleFonts.sansita(fontSize: 25),
+                        ),
+                      ),
+                      30.verticalSpace,
+
+                      ///
+                      ///  text feild for name
+                      ///
+                      customtextformfeild(
+                        onChanged: (value) {
+                          name = value;
+                        },
+                        text: "Enter your name",
+                        obscureText: false,
+
+                        validator: model.validateName,
+                        // validator: _validateName,
+                      ),
+                      20.verticalSpace,
+
+                      ///
+                      ///  text feild for email
+                      ///
+                      customtextformfeild(
+                        onChanged: (value) {
+                          email = value;
+                        },
+                        text: "Email address",
+                        obscureText: false,
+                        validator: model.validateEmail,
+                        controller: model.emailController,
+                        // validator: _validateEmail,
+                        // controller: _emailController,
+                      ),
+                      20.verticalSpace,
+
+                      ///
+                      ///  text feild for password
+                      ///
+                      customtextformfeild(
+                        onChanged: (value) {
+                          pasword = value;
+                        },
+                        text: "Password",
+                        obscureText: false,
+                        validator: model.validatePassword,
+                        controller: model.passwordController,
+                        // validator: _validatePassword,
+                        // controller: _passwordController,
+                      ),
+                      20.verticalSpace,
+
+                      ///
+                      ///  text feild for confirm password
+                      ///
+                      customtextformfeild(
+                        onChanged: (value) {
+                          confirmPassword = value;
+                        },
+                        text: "Confirm Password",
+                        obscureText: false,
+                        validator: model.validateConfirmPassword,
+                        controller: model.confirmPasswordController,
+                        // validator: _validateConfirmPassword,
+                        // controller: _confirmPasswordController,
+                      ),
+                      41.verticalSpace,
+                      CustomloginButton(
+                        loading: model.loading,
+                        // loading: loading,
+
+                        text: "SIGN UP",
+                        onPressed: () async {
+                          print("******************************");
+                          print("user name : $name");
+                          print("user email : $email)");
+                          print("user password :$pasword");
+                          print("user confirm password :$confirmPassword");
+                          print("******************************");
+                          // if (_fromKey.currentState!.validate())
+                          if (model.formKey.currentState!.validate()) {
+                            // loading        ***********
+                            model.loading = true;
+                            // loading = true; // show loading
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          }
+                          await model.signIn();
+                          // signIn();
+                        },
+                      ),
+                      10.verticalSpace,
+                      CustomLineWithText(text: "or signup with"),
+                      10.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomsocialIconButton(
+                              onPressed: () {},
+                              imagePath: AppAssets().facebook),
+                          15.horizontalSpace,
+                          CustomsocialIconButton(
+                              onPressed: () {},
+                              imagePath: AppAssets().facebook),
+                          15.horizontalSpace,
+                          CustomsocialIconButton(
+                              onPressed: () {}, imagePath: AppAssets().facebook)
+                        ],
+                      ),
+                      20.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Already have account?  "),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LogInScreen()));
+                              },
+                              child: Text("Log in"))
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
+  }
+}
+///
+/// this is done in view model it is just for reference
+///
+ //  final _fromKey = GlobalKey<FormState>();
   // ///
   // /// loading animation when user enter their details
   // ///
@@ -108,153 +283,4 @@ class _SignInScreenState extends State<SignInScreen> {
   //   }
   //   return null;
   // }
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => SignInViewModel(),
-        child: Consumer<SignInViewModel>(
-          builder: (context, model, child) => Scaffold(
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 32,
-                  right: 32,
-                  top: 93,
-                ),
-                child: Form(
-                  // key: _fromKey,
-                  key: model.formKey,
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Creat ",
-                          style: GoogleFonts.sansita(fontSize: 25),
-                        ),
-                      ),
-                      20.verticalSpace,
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Your account",
-                          style: GoogleFonts.sansita(fontSize: 25),
-                        ),
-                      ),
-                      30.verticalSpace,
-
-                      ///
-                      ///  text feild for name
-                      ///
-                      customtextformfeild(
-                        text: "Enter your name",
-                        obscureText: false,
-
-                        validator: model.validateName,
-                        // validator: _validateName,
-                      ),
-                      20.verticalSpace,
-
-                      ///
-                      ///  text feild for email
-                      ///
-                      customtextformfeild(
-                        text: "Email address",
-                        obscureText: false,
-                        validator: model.validateEmail,
-                        controller: model.emailController,
-                        // validator: _validateEmail,
-                        // controller: _emailController,
-                      ),
-                      20.verticalSpace,
-
-                      ///
-                      ///  text feild for password
-                      ///
-                      customtextformfeild(
-                        text: "Password",
-                        obscureText: false,
-                        validator: model.validatePassword,
-                        controller: model.passwordController,
-                        // validator: _validatePassword,
-                        // controller: _passwordController,
-                      ),
-                      20.verticalSpace,
-
-                      ///
-                      ///  text feild for confirm password
-                      ///
-                      customtextformfeild(
-                        text: "Confirm Password",
-                        obscureText: false,
-                        validator: model.validateConfirmPassword,
-                        controller: model.confirmPasswordController,
-                        // validator: _validateConfirmPassword,
-                        // controller: _confirmPasswordController,
-                      ),
-                      41.verticalSpace,
-                      CustomloginButton(
-                        loading: model.loading,
-                        // loading: loading,
-
-                        text: "SIGN UP",
-                        onPressed: () {
-                          // if (_fromKey.currentState!.validate())
-                          if (model.formKey.currentState!.validate()) {
-                            // loading        ***********
-                            model.loading = true;
-                            // loading = true; // show loading
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
-                          }
-                          model.signIn();
-                          // signIn();
-                        },
-                      ),
-                      10.verticalSpace,
-                      CustomLineWithText(text: "or signup with"),
-                      10.verticalSpace,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomsocialIconButton(
-                              onPressed: () {},
-                              imagePath: AppAssets().facebook),
-                          15.horizontalSpace,
-                          CustomsocialIconButton(
-                              onPressed: () {},
-                              imagePath: AppAssets().facebook),
-                          15.horizontalSpace,
-                          CustomsocialIconButton(
-                              onPressed: () {}, imagePath: AppAssets().facebook)
-                        ],
-                      ),
-                      20.verticalSpace,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Already have account?  "),
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LogInScreen()));
-                              },
-                              child: Text("Log in"))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ));
-  }
-}
+  //]

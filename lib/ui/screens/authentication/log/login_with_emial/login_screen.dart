@@ -39,26 +39,30 @@ class _LogInScreenState extends State<LogInScreen> {
       await _auth
           .signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text)
-          .then((value) {
-        setState(() {
-          loading = false;
-        });
-        Utils().ToastMessage(
-          value.user!.email.toString(),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      }).onError(
+          .then(
+        (value) {
+          setState(() {
+            loading = false;
+          });
+          Utils().ToastMessage(
+            value.user!.email.toString(),
+          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ),
+          );
+        },
+      ).onError(
         (error, stackTrace) {
           setState(() {
             loading = false;
           });
           // normal print statement slow app use debugprint
-          debugPrint(error.toString());
+          debugPrint(
+            error.toString(),
+          );
           Utils().ToastMessage(
             error.toString(),
           );
