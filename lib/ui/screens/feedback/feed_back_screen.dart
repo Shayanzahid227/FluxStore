@@ -42,7 +42,7 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               children: [
-                50.verticalSpace,
+                51.verticalSpace,
                 Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: blackColor),
