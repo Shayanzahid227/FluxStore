@@ -7,6 +7,7 @@ class customtextformfeild extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool obscureText;
+  final int maxline;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
 
@@ -18,7 +19,8 @@ class customtextformfeild extends StatelessWidget {
       required this.obscureText,
       this.controller,
       this.onChanged,
-      required this.validator});
+      this.maxline = 1,
+      this.validator});
   final RegExp _emailRegex = RegExp(
     r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
   );
@@ -29,6 +31,7 @@ class customtextformfeild extends StatelessWidget {
       onChanged: onChanged,
       controller: controller,
       obscureText: obscureText,
+      maxLines: maxline,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: TextStyle(fontWeight: FontWeight.w300),

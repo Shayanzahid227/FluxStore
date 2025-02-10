@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^3.8.1 # for firebase
   cloud_firestore: ^5.6.0 # for firebase
   firebase_auth: ^5.3.4 # for firebase
+  firebase_database: ^11.3.2 #firebase
   font_awesome_flutter: ^10.8.0
   readmore: ^3.0.0
   badges: ^3.1.2 # tags on cart etc

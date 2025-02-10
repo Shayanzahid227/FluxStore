@@ -48,6 +48,7 @@ class DefaultFirebaseOptions {
     authDomain: 'fluxstore-3e3f4.firebaseapp.com',
     storageBucket: 'fluxstore-3e3f4.firebasestorage.app',
     measurementId: 'G-L1NKFJVM1L',
+    databaseURL: 'https://fluxstore-3e3f4-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -56,6 +57,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '722856349605',
     projectId: 'fluxstore-3e3f4',
     storageBucket: 'fluxstore-3e3f4.firebasestorage.app',
+    databaseURL: 'https://fluxstore-3e3f4-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     projectId: 'fluxstore-3e3f4',
     storageBucket: 'fluxstore-3e3f4.firebasestorage.app',
     iosBundleId: 'com.example.StudioFlex',
+    databaseURL: 'https://fluxstore-3e3f4-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -74,6 +77,7 @@ class DefaultFirebaseOptions {
     projectId: 'fluxstore-3e3f4',
     storageBucket: 'fluxstore-3e3f4.firebasestorage.app',
     iosBundleId: 'com.example.StudioFlex',
+    databaseURL: 'https://fluxstore-3e3f4-default-rtdb.firebaseio.com/',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -84,5 +88,6 @@ class DefaultFirebaseOptions {
     authDomain: 'fluxstore-3e3f4.firebaseapp.com',
     storageBucket: 'fluxstore-3e3f4.firebasestorage.app',
     measurementId: 'G-T0KGMZ1K9J',
+    databaseURL: 'https://fluxstore-3e3f4-default-rtdb.firebaseio.com/',
   );
 }
