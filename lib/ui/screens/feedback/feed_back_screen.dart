@@ -37,7 +37,7 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
     return ChangeNotifierProvider(
       create: (context) => FeedBackViewModel(),
       child: Consumer<FeedBackViewModel>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, model, child) => Scaffold(
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
@@ -69,6 +69,7 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
                         DateTime.now().millisecondsSinceEpoch.toString(),
                       ).child("Comment").set(
                         {
+                          'name': user!.email,
                           'id':
                               DateTime.now().millisecondsSinceEpoch.toString(),
                           // tittle is key and feedback is value

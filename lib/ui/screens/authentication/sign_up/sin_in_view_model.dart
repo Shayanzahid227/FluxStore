@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_structure/core/others/base_view_model.dart';
 import 'package:code_structure/ui/screens/authentication/utils/sign_in_error_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,6 +40,7 @@ class SignInViewModel extends ChangeNotifier {
     }
   }
 
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -87,5 +89,27 @@ class SignInViewModel extends ChangeNotifier {
       return 'Confirm password is incorrect ';
     }
     return null;
+  }
+
+  ///
+  ///  to store user data in firestore
+  ///
+  void uploadUserDataToFireStore() {
+    // print user data for debugging
+
+    final user = auth.currentUser;
+    try {
+      FirebaseFirestore.instance.collection("users").doc(user?.uid).set(
+        {
+          'id': user?.uid,
+          'name': nameController.text.toString(),
+          'email': emailController.text.toString(),
+          'password': passwordController.text.toString(),
+          // so on
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

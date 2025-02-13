@@ -1,6 +1,11 @@
 import 'package:code_structure/firebase_options.dart';
+import 'package:code_structure/ui/profile/profile_screen.dart';
+import 'package:code_structure/ui/screens/authentication/log/login_with_emial/login_screen.dart';
 
 import 'package:code_structure/ui/screens/feedback/feed_back_screen.dart';
+import 'package:code_structure/ui/screens/home/home_screen.dart';
+import 'package:code_structure/z_common/splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +32,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(scaffoldBackgroundColor: const Color(0xffFAF8F6)),
-        home: FeedBackScreen(),
+        home: FirebaseAuth.instance.currentUser != null
+            ? ProfileScreen()
+            : LogInScreen(),
       ),
     );
   }
