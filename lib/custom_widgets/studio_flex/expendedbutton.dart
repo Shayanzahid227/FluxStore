@@ -44,7 +44,7 @@ class _CustomExpendButtonState extends State<CustomExpendButton> {
             height: screenHeight * 0.07,
             width: screenWidth * 0.6,
             decoration: BoxDecoration(
-              border: Border.all(width: 1.5, color: whiteColor),
+              border: Border.all(width: 1.6, color: whiteColor),
               color: PrimarybuttonColor,
               // color: isSelected ? PrimarybuttonColor : SecondarybuttonColor,
               borderRadius: BorderRadius.circular(40),
