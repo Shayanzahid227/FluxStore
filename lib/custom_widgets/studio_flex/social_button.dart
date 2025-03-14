@@ -16,8 +16,8 @@ class CustomsocialIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
-      width: 40,
+      height: 40.h,
+      width: 40.w,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white, // Background color of the container
