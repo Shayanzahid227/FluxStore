@@ -48,7 +48,7 @@ class _LoginWithPhoneNumberScreenState
                               obscureText: false,
                               controller: PhoneNumberController,
                               validator: validateWithPhoneNUmber),
-                          50.verticalSpace,
+                          60.verticalSpace,
                           CustomloginButton(
                             text: "send OTP",
                             onPressed: () {
