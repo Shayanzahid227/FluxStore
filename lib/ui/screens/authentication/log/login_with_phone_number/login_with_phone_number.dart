@@ -42,7 +42,7 @@ class _LoginWithPhoneNumberScreenState
                       key: formKey,
                       child: Column(
                         children: [
-                          50.verticalSpace,
+                          60.verticalSpace,
                           customtextformfeild(
                               text: "+1 123 456 789",
                               obscureText: false,
