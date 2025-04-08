@@ -34,7 +34,7 @@ class _CustomExpendButtonState extends State<CustomExpendButton> {
 
     return Container(
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
+          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(18))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment:
