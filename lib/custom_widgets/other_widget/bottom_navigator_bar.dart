@@ -25,7 +25,7 @@ class CustomBottomNavigatorBar extends StatelessWidget {
         child: Image.asset(
           image!,
           color: iconColor,
-          scale: 4,
+          scale: 3.6,
         ),
       ),
     );
