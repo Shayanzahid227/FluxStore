@@ -31,7 +31,7 @@ class CustomLineWithText extends StatelessWidget {
             child: Text(
               text,
               style: GoogleFonts.poppins(
-                fontSize: 13.sp,
+                fontSize: 15.sp,
                 fontWeight: FontWeight.w300,
               ),
             ),
