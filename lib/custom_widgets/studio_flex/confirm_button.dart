@@ -58,7 +58,7 @@ class _CustomConfirmButtonState extends State<CustomConfirmButton> {
                 MainAxisAlignment.center, // Center content vertically
             children: [
               Container(
-                height: screenHeight * 0.07,
+                height: screenHeight * 0.071,
                 width: screenWidth * 0.45,
                 decoration: BoxDecoration(
                   border: Border.all(width: 2, color: whiteColor),
@@ -86,7 +86,7 @@ class _CustomConfirmButtonState extends State<CustomConfirmButton> {
                         widget.text,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 17,
+                          fontSize: 18,
                           color: isSelected ? Colors.white : whiteColor,
                         ),
                       ),

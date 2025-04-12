@@ -67,7 +67,7 @@ class _CustomloginButtonState extends State<CustomloginButton> {
               width: screenWidth * 0.45,
               decoration: BoxDecoration(
                 border: Border.all(
-                  width: 2,
+                  width: 1.8,
                   color: PrimaryLoginButtonColor,
                 ),
 
@@ -95,7 +95,7 @@ class _CustomloginButtonState extends State<CustomloginButton> {
                         widget.text,
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 17,
+                            fontSize: 18,
                             // color: isSelected ? Colors.white : Colors.black,
                             color: whiteColor),
                       ),
