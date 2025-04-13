@@ -42,12 +42,12 @@ class _CustomExpendButtonState extends State<CustomExpendButton> {
         children: [
           Container(
             height: screenHeight * 0.07,
-            width: screenWidth * 0.6,
+            width: screenWidth * 0.61,
             decoration: BoxDecoration(
               border: Border.all(width: 1.6, color: whiteColor),
               color: PrimarybuttonColor,
               // color: isSelected ? PrimarybuttonColor : SecondarybuttonColor,
-              borderRadius: BorderRadius.circular(45),
+              borderRadius: BorderRadius.circular(47),
             ),
             child: Center(
               child: Row(
