@@ -59,7 +59,7 @@ class _CustomExpendButtonState extends State<CustomExpendButton> {
                     widget.text,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: 18,
+                      fontSize: 20,
                       color: Colors.black,
                     ),
                   ),
